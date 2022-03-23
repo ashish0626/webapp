@@ -9,9 +9,9 @@ pipeline {
     APP_VER = "v1.0.${BUILD_ID}"
     // HARBOR_URL = ""
     DEPLOY_GITREPO_USER = "ashish0626"    
-    DEPLOY_GITREPO_URL = "https://github.com/ashish0626/web-core-helmchart"
+    DEPLOY_GITREPO_URL = "github.com/${DEPLOY_GITREPO_USER}/web-core-helmchart.git"
     DEPLOY_GITREPO_BRANCH = "main"
-    DEPLOY_GITREPO_TOKEN = credentials('ashish_github')
+    DEPLOY_GITREPO_TOKEN = credentials('github_ashish')
   }    
   agent {
     kubernetes {
@@ -98,8 +98,8 @@ spec:
           sh """
             git config --global user.name $env.GIT_AUTHOR_NAME
             git config --global user.email $env.GIT_AUTHOR_EMAIL
-            # git clone https://$env.DEPLOY_GITREPO_USER:$env.DEPLOY_GITREPO_TOKEN@$env.DEPLOY_GITREPO_URL --branch=$env.DEPLOY_GITREPO_BRANCH deploy
-            git clone https://github.com/ashish0626/webapp.git
+            git clone https://$env.DEPLOY_GITREPO_USER:$env.DEPLOY_GITREPO_TOKEN@$env.DEPLOY_GITREPO_URL --branch=$env.DEPLOY_GITREPO_BRANCH deploy
+            # git clone https://github.com/ashish0626/webapp.git
             # After cloning
             cd deploy
             # update values.yaml
