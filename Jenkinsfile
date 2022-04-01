@@ -79,7 +79,7 @@ spec:
     stage('Image Vulnerability Scan') {
       steps {
         echo "Image Vulnerability Scan"
-        writeFile file: 'anchore_images', text: "${env.HARBOR_URL}/library/samples/web-core:v1.0.${env.BUILD_ID}"
+        // writeFile file: 'anchore_images', text: "${env.HARBOR_URL}/library/samples/web-core:v1.0.${env.BUILD_ID}"
         anchore name: 'anchore_images'
       }
     }
